@@ -7,10 +7,109 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="preloader"><div class="preloader-line"></div></div>
     <div class="header">
       <form id="submit-form">
-        <div class="header__deal-id">
-          <input name="deal-id" type="number" placeholder="ID Сделки" />
+        <div class="header__deal-title">
+          <h2 class="header__deal-id"></h2>
+          <p class="header__deal-date">
+            <span>Дата заказа</span>
+            <span id="deal-date"></span>
+          </p>
+        </div>
+        <div class="deal-info__table">
+          <div class="deal-info__table__title">
+            <div class="deal-info__table__title__item">ИНФОРМАЦИЯ</div>
+            <div class="deal-info__table__title__item">ПОЛУЧАТЕЛЬ</div>
+          </div>
+          <div class="deal-info__table__content">
+            <div class="deal-info__table__content-item">
+              Менеджер:
+              <span
+                id="deal-manager"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+            <div class="deal-info__table__content-item">
+              ФИО:
+              <span
+                id="deal-full-name"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+            <div class="deal-info__table__content-item">
+              Админ:
+              <span
+                id="deal-admin"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+            <div class="deal-info__table__content-item">
+              Город:
+              <span
+                id="deal-city"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+            <div class="deal-info__table__content-item">
+              Статус:
+              <span
+                id="deal-status"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+            <div class="deal-info__table__content-item">
+              Банк:
+              <span
+                id="deal-bank"
+                class="deal-info__table__content-item-text"
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div class="deal-payment">
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">ПЕРЕВОД</div>
+            <div id="deal-translation" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">ВАЛЮТА</div>
+            <div id="deal-current" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">КУРС</div>
+            <div id="deal-curs" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">ОСТАТОК</div>
+            <div id="deal-remainder" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">БЮДЖЕТ</div>
+            <div id="deal-budget" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+          <div class="deal-payment__item">
+            <div class="deal-payment__title__item">ПЕРЕКУП</div>
+            <div id="deal-outbid" class="deal-payment__content__item">
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="header__list--title">
+          <div class="header__list--title__content">Наименование позиций</div>
+          <div class="header__list--title__content">Количество</div>
+          <div class="header__list--title__content">Цена</div>
+          <div class="header__list--title__content">Сумма</div>
         </div>
         <div class="header__list">
           <div class="header__item">
@@ -31,6 +130,48 @@
         <div class="header__btn">
           <button type="button" class="header__add">Добавить еще</button>
           <button type="submit" class="header__send">Отправить</button>
+        </div>
+        <div class="header__total">
+          <div class="header__total-table">
+            <div class="header__total-table__list">
+              <div class="header__total-table__list-item">
+                ОБЩАЯ СУММА ТОВАРА
+              </div>
+              <div class="header__total-table__list-item">0</div>
+            </div>
+            <div class="header__total-table__list">
+              <div class="header__total-table__list-item">
+                Упаковка / тачка / отправка
+              </div>
+              <div class="header__total-table__list-item"></div>
+            </div>
+            <div class="header__total-table__list">
+              <div class="header__total-table__list-item">
+                Доставка / погрузка / пресс
+              </div>
+              <div class="header__total-table__list-item"></div>
+            </div>
+            <div class="header__total-table__list">
+              <div class="header__total-table__list-item">
+                Комисия <span>6%</span>
+              </div>
+              <div class="header__total-table__list-item"></div>
+            </div>
+            <div class="header__total-table__list">
+              <div class="header__total-table__list-item">Итого</div>
+              <div class="header__total-table__list-item"></div>
+            </div>
+          </div>
+          <div class="header__total-sidebar">
+            <p class="header__total-sidebar-text">
+              Жалобы и предложения по номеру: 996 500 996 500 Кайрат
+              (Руководитель)
+            </p>
+            <p class="header__total-sidebar-text">
+              Заказ должен производится в инд.группах
+            </p>
+            <p class="header__total-sidebar-text">Благодарим за заказ</p>
+          </div>
         </div>
       </form>
     </div>

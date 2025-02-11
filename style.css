@@ -9,6 +9,7 @@
 body {
   margin: 0;
   padding: 10px;
+  position: relative;
 }
 
 input,
@@ -20,6 +21,22 @@ button {
 input:focus,
 button:focus {
   outline: none;
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #f3f3f3;
+  z-index: 1000;
+}
+
+.preloader-line {
+  width: 0;
+  height: 5px;
+  background-color: #3498db;
+  transition: width 0.8s ease; /* Плавный переход ширины */
 }
 
 /* Основной контейнер */
@@ -37,39 +54,26 @@ button:focus {
 .header__deal-id input {
   width: 100%;
   height: 40px;
-  font-size: 16px;
   padding: 5px;
 }
 
 .header__list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.header__item {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
 }
 
 .header__card input {
   width: 100%;
   height: 35px;
-  font-size: 14px;
-  padding: 5px;
 }
 
 .header__btn {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
 }
 
 .header__send,
 .header__add {
   border-radius: 5px;
-  font-size: 14px;
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s;
@@ -90,6 +94,7 @@ button:focus {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    font-size: 8px;
   }
   body {
     margin: 0;
@@ -99,23 +104,61 @@ button:focus {
     padding: 0;
   }
   input:active {
-    border: none;
     outline: none;
   }
+  .header__deal-title {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header__deal-date {
+    font-size: 10px;
+  }
+  .header__deal-date span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    border: 1px solid #000;
+    border-bottom: none;
+    padding-left: 5px;
+  }
+  .header__deal-date span:first-child {
+    font-weight: bold;
+    color: #fff;
+    background-color: #59a3ac;
+  }
+
   .header {
     overflow: hidden;
   }
   .header__deal-id {
     width: 100%;
-  }
-  .header__deal-id input {
-    width: 100%;
-    height: 30px;
+    font-size: 12px;
   }
   .header__list {
     display: flex;
     flex-direction: column;
   }
+  .header__list--title {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-weight: bold;
+    background-color: #59a3ac;
+    color: #fff;
+  }
+  .header__list--title__content {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+  }
+  .header__list--title__content:last-child {
+    border-right: 1px solid #000;
+  }
+
   .header__item {
     width: 100%;
     display: grid;
@@ -127,150 +170,247 @@ button:focus {
   .header__card input {
     width: 100%;
     height: 25px;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+    padding: 0 0 0 2px;
   }
+  .header__card:last-child input {
+    border-right: 1px solid #000;
+  }
+
   .header__btn {
     width: 100%;
-    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
   .header__send,
   .header__add {
     border-radius: 0;
     border: 1px solid #000;
-    font-size: 12px;
-    padding: 2px 5px;
   }
-}
-
-/* Планшеты (768px) */
-@media (min-width: 768px) {
-  .header__item {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .header__deal-id input {
-    height: 45px;
-    font-size: 18px;
-  }
-
-  .header__card input {
-    height: 40px;
-    font-size: 16px;
-  }
-  body {
-    margin: 0;
-    padding: 10px;
-  }
-
-  input,
-  button {
-    border: 1px solid #000;
-    padding: 5px;
-  }
-
-  input:focus,
-  button:focus {
-    outline: none;
-  }
-
-  /* Основной контейнер */
-  .header {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  .header__deal-id {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .header__deal-id input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    padding: 5px;
-  }
-
-  .header__list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .header__item {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-  }
-
-  .header__card input {
-    width: 100%;
-    height: 35px;
-    font-size: 14px;
-    padding: 5px;
-  }
-
-  .header__btn {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-  }
-
-  .header__send,
   .header__add {
-    border-radius: 5px;
+    border-right: none;
+  }
+  .deal-info__table {
+  }
+  .deal-info__table__title {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #59a3ac;
+    color: #fff;
+  }
+  .deal-info__table__title__item {
+    height: 25px;
+    font-size: 10px;
+    font-weight: bold;
+    padding-left: 5px;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-right: none;
+    display: flex;
+    align-items: center;
+  }
+  .deal-info__table__title__item:last-child {
+    border-right: 1px solid #000;
+  }
+  .deal-info__table__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .deal-info__table__content-item {
+    min-height: 25px;
+    font-weight: bold;
+    padding-left: 5px;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-right: none;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .deal-info__table__content-item:nth-child(2n) {
+    border-right: 1px solid #000;
+  }
+  .deal-info__table__content-item-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .deal-payment {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .deal-payment__item {
+    overflow: hidden;
+  }
+  .deal-payment__item:nth-child(2n) div {
+    border-right: 1px solid #000;
+  }
+  .deal-payment__title__item {
+    height: 25px;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-right: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #59a3ac;
+    font-weight: bold;
+    color: #fff;
+  }
+  .deal-payment__content__item {
+    min-height: 25px;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-right: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .deal-payment__content__item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .header__total {
+  }
+  .header__total-sidebar {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .header__total-sidebar-text {
+    font-size: 10px;
+    color: #59a3ac;
+  }
+  .header__total-table {
+  }
+  .header__total-table__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header__total-table__list:first-child .header__total-table__list-item {
+    border-top: none;
+  }
+  .header__total-table__list-item:first-child {
+    font-weight: bold;
+  }
+  .header__total-table__list:last-child .header__total-table__list-item {
+    border-bottom: 1px solid #000;
+  }
+  .header__total-table__list-item {
+    height: 25px;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-right: none;
+    font-size: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+  .header__total-table__list-item span {
+    margin-left: auto;
+  }
+  .header__total-table__list-item:last-child {
+    border-right: 1px solid #000;
+  }
+}
+@media screen and (min-width: 390px) {
+  * {
+    font-size: 10px;
+  }
+  .header__deal-date {
+    font-size: 12px;
+  }
+  .header__deal-id {
     font-size: 14px;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
   }
-
-  .header__send:hover,
-  .header__add:hover {
-    background-color: #ddd;
+  .deal-info__table__title__item {
+    font-size: 12px;
+  }
+  .header__total-sidebar-text {
+    font-size: 12px;
+  }
+  .header__total-table__list-item {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 428px) {
+  .deal-payment {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .deal-payment__item:nth-child(2n) div {
+    border-right: none;
+  }
+  .deal-payment__item:nth-child(3) div {
+    border-right: 1px solid #000;
+  }
+  .deal-payment__item:last-child div {
+    border-right: 1px solid #000;
+  }
+}
+@media (min-width: 530px) {
+  * {
+    font-size: 12px;
+  }
+  .header__deal-date {
+    font-size: 14px;
+  }
+  .header__deal-id {
+    font-size: 16px;
+  }
+  .deal-info__table__title__item {
+    font-size: 14px;
+  }
+  .header__total-sidebar-text {
+    font-size: 14px;
+  }
+  .header__total-table__list-item {
+    font-size: 14px;
+  }
+  .header__card input {
+    height: 30px;
+  }
+  .deal-info__table__content-item {
+    min-height: 30px;
+  }
+  .deal-info__table__title__item {
+    min-height: 30px;
+  }
+  .deal-payment__title__item {
+    min-height: 30px;
+  }
+  .deal-payment__content__item {
+    min-height: 30px;
+  }
+  .header__total-table__list-item {
+    min-height: 30px;
+  }
+  .deal-payment {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .deal-payment__item:nth-child(2n) div {
+    border-right: none;
+  }
+  .deal-payment__item:last-child div {
+    border-right: 1px solid #000;
+  }
+  .deal-payment__item:nth-child(3) div {
+    border-right: none;
   }
 }
 
-/* Маленькие ноутбуки (1024px) */
+@media (min-width: 768px) {
+}
 @media (min-width: 1024px) {
-  .header {
-    padding: 20px;
-  }
-
-  .header__item {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
-
-/* Full HD экраны (1920px) */
 @media (min-width: 1440px) {
-  .header {
-    max-width: 80%;
-  }
-
-  .header__item {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .header__card input {
-    height: 45px;
-    font-size: 18px;
-  }
 }
-
-/* 2K экраны (2048px) */
 @media (min-width: 2048px) {
-  .header {
-    max-width: 70%;
-  }
-
-  .header__item {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-  }
-
-  .header__card input {
-    height: 50px;
-    font-size: 20px;
-  }
 }
