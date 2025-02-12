@@ -282,15 +282,6 @@ button:focus {
   }
   .header__total {
   }
-  .header__total-sidebar {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .header__total-sidebar-text {
-    font-size: 10px;
-    color: #59a3ac;
-  }
   .header__total-table {
   }
   .header__total-table__list {
@@ -336,12 +327,6 @@ button:focus {
   .deal-info__table__title__item {
     font-size: 12px;
   }
-  .header__total-sidebar-text {
-    font-size: 12px;
-  }
-  .header__total-table__list-item {
-    font-size: 12px;
-  }
 }
 @media screen and (min-width: 428px) {
   .deal-payment {
@@ -369,9 +354,6 @@ button:focus {
     font-size: 16px;
   }
   .deal-info__table__title__item {
-    font-size: 14px;
-  }
-  .header__total-sidebar-text {
     font-size: 14px;
   }
   .header__total-table__list-item {
