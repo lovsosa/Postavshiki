@@ -225,8 +225,10 @@ function calculateTotalSum() {
   // Обновляем отображение общей суммы (предположительно, есть элемент для итога)
   const totalSumElement = document.querySelector(".total-sum");
   const totalSumWithCommission = document.querySelector(".total-sum-with-commission");
+  const resultSum = document.querySelector(".result");
   totalSumElement.textContent = totalSum;
-  totalSumWithCommission.textContent = (totalSum * 1.06)
+  const commission = totalSumWithCommission.textContent = totalSum * 0.06;
+  resultSum.textContent = (totalSum + commission)
 }
 // Назначаем обработчики событий для динамических полей
 document.addEventListener("input", (event) => {
