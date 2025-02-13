@@ -148,7 +148,7 @@ document.querySelector(".header__add").addEventListener("click", (event) => {
   <input name="count" type="number" placeholder="Количество" />
 </div>
 <div class="header__card">
-  <input name="price" type="number" placeholder="Ценна" />
+  <input name="price" type="number" placeholder="Цена" />
 </div>
 <div class="header__card">
   <input name="sum" type="number" placeholder="Сумма" />
@@ -199,7 +199,6 @@ async function checkDealExists(getUrlParams) {
   }
 }
 
-const totalSum = 0;
 // Функция для пересчета суммы
 function calculateSum(inputElement) {
   const row = inputElement.closest(".header__item");
@@ -212,9 +211,23 @@ function calculateSum(inputElement) {
     sumInput.value = count * price;
     sumInput.setAttribute("readonly", true); // Делаем поле суммы неизменяемым
   }
-
+  calculateTotalSum();
 }
+function calculateTotalSum() {
+  let totalSum = 0;
 
+  // Ищем все строки и складываем их суммы
+  const sumInputs = document.querySelectorAll("input[name='sum']");
+  sumInputs.forEach((sumInput) => {
+    totalSum += parseFloat(sumInput.value) || 0;
+  });
+
+  // Обновляем отображение общей суммы (предположительно, есть элемент для итога)
+  const totalSumElement = document.querySelector(".total-sum");
+  const totalSumWithCommission = document.querySelector(".total-sum-with-commission");
+  totalSumElement.textContent = totalSum;
+  totalSumWithCommission.textContent = (totalSum * 1.06)
+}
 // Назначаем обработчики событий для динамических полей
 document.addEventListener("input", (event) => {
   if (event.target.name === "count" || event.target.name === "price") {
